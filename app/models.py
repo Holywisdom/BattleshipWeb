@@ -12,7 +12,7 @@ class User(db.Model):
     role = db.Column(db.SmallInteger, default = ROLE_USER)
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime)
-   # board = db.relationship('Board', backref = 'player', lazy = 'dynamic')
+   # Game.board = db.relationship('Board', backref = 'player', lazy = 'dynamic')
 
     def is_authenticated(self):
         return True
@@ -45,7 +45,7 @@ class User(db.Model):
             version += 1
         return new_nickname
 
-#class Board(Model):
+#def board(Model):
 #    id = db.Column(db.Integer, primary_key = True)
 #    board = db.Column(db.String(300))
 #    timestamp = db.Column(db.DateTime)
@@ -53,3 +53,6 @@ class User(db.Model):
 #
 #    def __repr__(self): # pragma: no cover
 #        return '<Post %r>' % (self.body)
+
+class Game(Model):
+    pass

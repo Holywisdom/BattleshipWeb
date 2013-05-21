@@ -8,11 +8,16 @@
     <body>
         <div class="container">
             <div class="navbar">
-                <ul>
-                    <li><a href="{{ url_for('index') }}">Home</a></li>
-                    <li><a href="{{ url_for('play') }}">Play</a></li>
-                    <li><a href="{{ url_for('login') }}">Login</a></li>
-                </ul>
+                <a href="{{ url_for('index') }}">Home</a></li>
+                | <a href="{{ url_for('play') }}">Play</a></li>
+                {% if not g.user.is_authenticated() %}
+                | <a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+                {% if g.user.is_authenticated() %}
+                | <a href="{{ url_for('user', nickname = g.user.nickname) }}">{{g.user.nickname}}</a>
+                | <a href="{{ url_for('logout') }}">Logout</a>
+                {% endif %}
+                <hr>
             </div>
             {% with messages = get_flashed_messages() %}
             {% if messages%}
